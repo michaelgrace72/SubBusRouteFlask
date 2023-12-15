@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from geopy.distance import geodesic
 from itertools import chain
 import heapq
+from numpy import np
 app = Flask(__name__, template_folder='templates')
 
 coordinates = {
@@ -441,11 +442,11 @@ def processroute():
     startroute = request.args.get('startroute')
     endroute = request.args.get('endroute')
 
-    # Assuming passroute returns a result that you want to display on the result page
+    # Process the data
     result = passroute(startroute, endroute)
-    
+    result_array = np.array(result).flatten()
     # Redirect to the result page with the processed result
-    return redirect(url_for('result', result=result))
+    return redirect(url_for('result', result=result_array))
 
 @app.route('/result')
 def result():
@@ -462,3 +463,5 @@ def result():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+    # git commit -m "uses numpy flatten to change the result into 1d array"

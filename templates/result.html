@@ -11,17 +11,62 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Result:</h2>
-    <ul>
-        {% for result in results %}
-        <h3>Route: {{ result[0] }}</h3>
-        <ul>
-            {% for location in result[1] %}
-                <li>{{ location }}</li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
-    </ul>
+    <body class="my-login-page">
+        <section class="h-100">
+            <div class="container h-100">
+                <div class="row justify-content-md-center h-100">
+                    <div class="card-wrapper">
+                        <div class="brand">
+                            <img src="Image/logo.png" alt="logo">
+                        </div>
+                        <div class="card fat">
+                            <div class="card-body">
+                                <h2 class="card-title">Rute Terdekat</h2>
+    
+                                <div class="mt-3">
+                                    <p><strong> <span style="font-size: 18px;" id="goalLocation"></span></strong></p>
+                                </div>
+    
+                                <!-- Section for the price and time estimation of the initial location -->
+                                <div class="mt-3">
+                                    <h4>Info</h4>
+                                        <div>
+                                            <p><strong>Harga</strong></p>
+                                            <p><span id="initialLocationPrice"></span></p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Perkiraan Waktu</strong></p>
+                                            <p><span id="initialLocationTime"></span></p>
+                                        </div>
+                                </div>
+    
+                                <!-- Section for Lokasi Anda and Lokasi Tujuan -->
+                                <div class="mt-3" id="Hasil">
+                                    <h4>Route</h4>
+                                    <p><strong>Lokasi Anda:</strong> <span id="userLocation"></span></p>
+                                    <p><strong>Lokasi Tujuan:</strong> <span id="lastLocation"></span></p>
+                                </div>
+    
+                                <div>
+                                    <h4>Shortest Route:</h4>
+                                    <ul id="shortestRoute"></ul>
+                                </div>
+    
+                            </div>
+                        </div>
+                        <div class="footer">
+                            Copyright &copy; 2023 &mdash; SubBusRoute
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+    </body>
     
 </body>
 </html>
