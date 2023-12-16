@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from geopy.distance import geodesic
 from itertools import chain
 import heapq
-from numpy import np
+import sys
+# from numpy import array
 app = Flask(__name__, template_folder='templates')
 
 coordinates = {
@@ -435,7 +436,6 @@ def passroute(start_halte, end_halte):
 def index():
     return render_template('index.html')
 
-from itertools import chain
 
 @app.route('/getroute', methods=['GET'])
 def processroute():
@@ -444,24 +444,22 @@ def processroute():
 
     # Process the data
     result = passroute(startroute, endroute)
-    result_array = np.array(result).flatten()
+
+    # Convert the list to a comma-separated string
+    result_string = ', '.join([str(item) for sublist in result for item in sublist])
+    
     # Redirect to the result page with the processed result
-    return redirect(url_for('result', result=result_array))
+    return redirect(url_for('result', result=result_string))
 
 @app.route('/result')
 def result():
     # Access the processed result from the URL parameters
-    results = []
-    for i in range(1, len(request.args)+1):
-        result_id = request.args.get(f'result{i}')
-        locations = request.args.get(f'locations{i}')
-        if result_id and locations:
-            results.append((result_id, locations.split(',')))
+    result_string = request.args.get('result')
+    
     # Render the result page
-    return render_template('result.html', results=results)
+    return render_template('result.html', results=result_string)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
     
-    # git commit -m "uses numpy flatten to change the result into 1d array"
