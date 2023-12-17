@@ -303,8 +303,8 @@ transit_dict = {
     ('R3', 'R2'): 'Pandegiling 1',
     ('R3', 'R2'): 'Basuki Rahmat',
     ('R3', 'R2'): 'Kaliasin',
-    ('R3', 'R2'): 'Simpang Dukuh',
-    ('R3', 'R2'): 'Gubernur Suryo'
+    # ('R3', 'R2'): 'Simpang Dukuh',
+    # ('R3', 'R2'): 'Gubernur Suryo'
 }
 
 def heuristic(node, goal):
@@ -423,9 +423,12 @@ def passroute(start_halte, end_halte):
             end_rute = rute
 
     if end_rute == 'R1' and (start_halte == 'Kertajaya Indah' or start_halte == "ITS" or start_halte == "Manyar Kerta Adi"):
-            start_rute = "R1"
+        start_rute = "R1"
 
-    if ((start_rute == 'R1' and end_rute == 'R3') or (start_rute == 'R2' and end_rute == 'R3')) and (end_halte == 'Panglima Sudirman' or end_halte == "Sono Kembang" or end_halte == "Urip Sumaharjo 2" or end_halte == "Pandegiling 2" or end_halte == "Santa Maria" ):
+    if (start_rute == 'R1' and (end_halte == 'Kertajaya Indah' or end_halte == "ITS" or end_halte == "Manyar Kerta Adi")) :
+            end_rute = "R1"
+
+    if (((start_rute == 'R1' and end_rute == 'R3') or (start_rute == 'R2' and end_rute == 'R3')) and (end_halte == 'Panglima Sudirman' or end_halte == "Sono Kembang" or end_halte == "Urip Sumaharjo 2" or end_halte == "Pandegiling 2" or end_halte == "Santa Maria" )):
             end_rute = "R2"
     result_paths = find_route(start_rute, end_rute, start_halte, end_halte)
     

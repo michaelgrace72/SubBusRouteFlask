@@ -303,12 +303,7 @@ transit_dict = {
 }
 
 def heuristic(node, goal):
-    if coordinates[node] is not None and coordinates[goal] is not None:
-        return geodesic(coordinates[node], coordinates[goal]).meters
-    else:
-        # Handle the case where either node or goal coordinates are None
-        return float('inf')  # or any other appropriate value
-
+    return geodesic(coordinates[node], coordinates[goal]).meters
 
 def calculate_all_heuristics(goal):
     all_heuristics = {}
@@ -406,24 +401,24 @@ def find_route(start_rute, end_rute, start_halte, end_halte):
 
     return result_paths
 
+start_halte = input("Masukkan halte awal: ")
+end_halte = input("Masukkan halte akhir: ")
+start_rute = None
+end_rute = None
 
-def passroute(start_halte, end_halte):
-    start_rute = None
-    end_rute = None
+for rute, haltes in graph.items():
+    if start_halte in haltes:
+        start_rute = rute
+    if end_halte in haltes:
+        end_rute = rute
 
-    for rute, haltes in graph.items():
-        if start_halte in haltes:
-            start_rute = rute
-        if end_halte in haltes:
-            end_rute = rute
+if end_rute == 'R1' and (start_halte == 'Kertajaya Indah' or start_halte == "ITS" or start_halte == "Manyar Kerta Adi"):
+        start_rute = "R1"
 
-    if end_rute == 'R1' and (start_halte == 'Kertajaya Indah' or start_halte == "ITS" or start_halte == "Manyar Kerta Adi"):
-            start_rute = "R1"
+if ((start_rute == 'R1' and end_rute == 'R3') or (start_rute == 'R2' and end_rute == 'R3')) and (end_halte == 'Panglima Sudirman' or end_halte == "Sono Kembang" or end_halte == "Urip Sumaharjo 2" or end_halte == "Pandegiling 2" or end_halte == "Santa Maria" ):
+        end_rute = "R2"
 
-    if ((start_rute == 'R1' and end_rute == 'R3') or (start_rute == 'R2' and end_rute == 'R3')) and (end_halte == 'Panglima Sudirman' or end_halte == "Sono Kembang" or end_halte == "Urip Sumaharjo 2" or end_halte == "Pandegiling 2" or end_halte == "Santa Maria" ):
-            end_rute = "R2"
-    result_paths = find_route(start_rute, end_rute, start_halte, end_halte)
-    return result_paths
+result_paths = find_route(start_rute, end_rute, start_halte, end_halte)
 
 for i, (route_number, path) in enumerate(result_paths):
     print([route_number] + path)
