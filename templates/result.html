@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 
-    <!-- pyscript -->
-    <!-- <link rel="stylesheet" href="https://pyscript.net/releases/2023.11.1/core.css">
-    <script type="module" src="https://pyscript.net/releases/2023.11.1/core.js"></script> -->
 </head>
 <body class="my-login-page">
     {% set shortestRoute = results%}
@@ -30,16 +27,18 @@
                             <h2 class="card-title">Rute Terdekat</h2>
 
                             <div class="mt-3">
-                                <p><strong> <span style="font-size: 18px;" id="goalLocation"></span></strong></p>
+                                <p>
+                                    <img id="goalImage" src="" alt="">
+                                    <strong><span style="font-size: 18px;" id="goalLocation"></span></strong></p>
                             </div>
 
                             <!-- Section for the price and time estimation of the initial location -->
                             <div class="mt-3">
                                 <h4>Info</h4>
                                 <p><strong>Price:</strong></p>
-                                <p><span id="initialLocationPrice"></span></p>
+                                <p><img src="{{ url_for('static', filename='img/cash.jpg') }}" width="35" height="35" alt="Cash Image"><span id="initialLocationPrice"></span></p>
                                 <p><strong>Time Estimation:</strong></p>
-                                <p><span id="initialLocationTime"></span></p>
+                                <p><img src="{{ url_for('static', filename='img/clock.jpg') }}" width="35" height="35" alt="Clock Image"><span id="initialLocationTime"></span></p>
                             </div>
 
                             <!-- Section for Lokasi Anda and Lokasi Tujuan -->
@@ -100,7 +99,7 @@
         var initialLocationTime = shortestPathArray.length * 3  + " minutes";
 
         var initialLocation =  {{startRoute | tojson}};
-	    var endlocation = {{endRoute | tojson}};
+	    var endlocation = shortestPathArray.slice(-1);
         var goal = {{endRoute |tojson}};
         // Displaying values for initial location details on the page
         document.getElementById('initialLocationPrice').innerText = initialLocationPrice;
@@ -108,7 +107,7 @@
         // Displaying values for Lokasi Anda and Lokasi Tujuan on the page
         document.getElementById('userLocation').innerText = initialLocation;
         document.getElementById('lastLocation').innerText = endlocation;
-        document.getElementById('goalLocation').innerText = endlocation;
+        document.getElementById('goalLocation').innerText = goal;
     </script>
 </body>
 </html>

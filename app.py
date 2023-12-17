@@ -411,10 +411,22 @@ def find_route(start_rute, end_rute, start_halte, end_halte):
 
     return result_paths
 
-
+def checkBigLocation(Location):
+    if Location == 'Tugu Pahlawan':
+        Location = 'Pasar Turi'
+    elif Location == 'Tunjungan Plaza':
+        Location = 'Embong Malang'
+    elif Location == 'Stasiun Gubeng':
+        Location = 'SMAN 4'
+    
+    return Location
+    
 def passroute(start_halte, end_halte):
     start_rute = None
     end_rute = None
+    
+    start_halte = checkBigLocation(start_halte)
+    end_halte = checkBigLocation(end_halte)
 
     for rute, haltes in graph.items():
         if start_halte in haltes:
