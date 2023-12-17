@@ -99,11 +99,11 @@ body.my-login-page {
   .list-items:hover {
 	background-color: #dddddd;
   }
-  ul#shortestRoute li{
+  ul#shortestRouteContent li{
 	border-radius: 5px;
 	padding: 5px 4px;
 	margin-bottom: 10px;
-	color: black;
+	color: whitesmoke;
   }
 
 

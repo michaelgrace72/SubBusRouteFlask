@@ -14,7 +14,7 @@ let locations = ["KENPARK",
 	"Gubernur Suryo","Balai Kota","Moestopo","RSUD dr. Soetomo","UNAIR","Samsat Manyar","Koni","PENS 2","Terminal Purabaya","Dukuh Menanggal",
 	"Siwalankerto 1","Taman Pelangi","RS Bhayangkara","UBHARA","PUSVETMA","Ketintang","Joyoboyo","Museum BI","RS Darmo","Embong Malang",
 	"Blauran","Pirngadi","Pasar Turi","Masjid Kemayoran","Indrapura","Jembatan Merah","Veteran","Tugu Pahlawan","Alun Alun Contong",
-	"Siola","Tunjungan","Joyoboyo 2","RSAL","Wonocolo","UIN","Jemur Ngawinan","Siwalankerto 2","Kerto Menanggal",];
+	"Siola","Tunjungan","Joyoboyo 2","RSAL","Wonocolo","UIN","Jemur Ngawinan","Siwalankerto 2","Kerto Menanggal","Tunjungan Plaza"];
 // Sort locations in ascending order
 let sortedLocations = locations.sort();
 
