@@ -444,20 +444,21 @@ def processroute():
 
     # Process the data
     result = passroute(startroute, endroute)
-
+    print(result)
     # Convert the list to a comma-separated string
-    result_string = ', '.join([str(item) for sublist in result for item in sublist])
+    result_string = ', '.join([f'{outer[0]}, {", ".join(outer[1])}' for outer in result])
     
     # Redirect to the result page with the processed result
-    return redirect(url_for('result', result=result_string))
+    return redirect(url_for('result', result=result_string, startroute=startroute, endroute=endroute))
 
 @app.route('/result')
 def result():
     # Access the processed result from the URL parameters
     result_string = request.args.get('result')
-    
+    startroute = request.args.get('startroute')
+    endroute = request.args.get('endroute')
     # Render the result page
-    return render_template('result.html', results=result_string)
+    return render_template('result.html', results=result_string, startroute=startroute, endroute=endroute)
 
 
 if __name__ == '__main__':

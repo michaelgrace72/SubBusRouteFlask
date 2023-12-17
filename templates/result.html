@@ -3,45 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.png') }}">
-
+    <title>Result Page</title>
+	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.png') }}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- pyscript -->
+    <!-- <link rel="stylesheet" href="https://pyscript.net/releases/2023.11.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2023.11.1/core.js"></script> -->
 </head>
 <body class="my-login-page">
     {% set shortestRoute = results%}
+    {% set startRoute = startroute%}
+    {% set endRoute = endroute%}
     {% set location = shortestRoute.split(", ")%}
-        <section class="h-100">
-            <div class="container h-100">
-                <div class="row justify-content-md-center h-100">
-                    <div class="card-wrapper">
-                        <div class="brand">
-                            <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
-                        </div>
-                        <div class="card fat">
-                            <div class="card-body">
-                                <h2 class="card-title">Rute Terdekat</h2>
-    
-                                <div class="mt-3">
-                                    <p><strong> <span style="font-size: 18px;" id="goalLocation"></span></strong></p>
-                                </div>
-    
-                                <!-- Section for the price and time estimation of the initial location -->
+    <section class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-md-center h-100">
+                <div class="card-wrapper">
+                    <div class="brand">
+						<img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+					</div>
+                    <div class="card fat">
+                        <div class="card-body">
+                            <h2 class="card-title">Rute Terdekat</h2>
+
+                            <div class="mt-3">
+                                <p><strong> <span style="font-size: 18px;" id="goalLocation"></span></strong></p>
+                            </div>
+
+                            <!-- Section for the price and time estimation of the initial location -->
                             <div class="mt-3">
                                 <h4>Info</h4>
-                                    <div>
-                                        <p><strong>Harga</strong></p>
-                                        <p><span id="initialLocationPrice"></span></p>
-                                    </div>
-                                    <div>
-                                        <p><strong>Perkiraan Waktu</strong></p>
-                                        <p><span id="initialLocationTime"></span></p>
-                                    </div>
+                                <p><strong>Price:</strong></p>
+                                <p><span id="initialLocationPrice"></span></p>
+                                <p><strong>Time Estimation:</strong></p>
+                                <p><span id="initialLocationTime"></span></p>
                             </div>
-    
-                                <!-- Section for Lokasi Anda and Lokasi Tujuan -->
+
+                            <!-- Section for Lokasi Anda and Lokasi Tujuan -->
                             <div class="mt-3" id="Hasil">
                                 <h4>Route</h4>
                                 <p><strong>Lokasi Anda:</strong> <span id="userLocation"></span></p>
@@ -52,63 +53,62 @@
                                 <h4>Shortest Route:</h4>
                                 <ul id="shortestRoute"></ul>
                             </div>
-    
-                            </div>
+
                         </div>
-                        <div class="footer">
-                            Copyright &copy; 2023 &mdash; SubBusRoute
-                        </div>
+                    </div>
+                    <div class="footer">
+                        Copyright &copy; 2023 &mdash; SubBusRoute
                     </div>
                 </div>
             </div>
-        </section>
-    
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script>
+        </div>
+    </section>
 
-            // ShortestRoute
-            var shortestPath = {{shortestRoute | tojson | safe}};
-            console.log(shortestPath);
-            var shortestPathArray = shortestPath.split('->');
-            console.log(shortestPathArray);
-            var currentColor ='';
-            var price = 0;
-            shortestPathArray.forEach(function (element) {
-            var listItem = document.createElement('li');
-    
-            if (element === 'R1') {
-                currentColor = '#49be25';
-                price += 5000; 
-                element = '1';
-            } else if (element === 'R2') {
-                currentColor = '#be4d25';
-                price += 5000;
-                element = '2L';
-            } else if (element === 'R3') {
-                currentColor = '#25a5be';
-                price += 5000;
-                element = '3';
-            } 
-            listItem.style.backgroundColor = currentColor;
-            listItem.innerText = element;
-            shortestRoute.appendChild(listItem);
-            });
-            // Sample data for initial location details
-            var initialLocationPrice = "Rp. " + price + ",- / Rp. " + price/2+",-(for students)"  ;
-            var initialLocationTime = shortestPathArray.length * 3  + " minutes";
-    
-            var initialLocation =  localStorage.getItem('startHalte');
-            var endlocation = localStorage.getItem('endHalte');
-            var goal = localStorage.getItem('goal');
-            // Displaying values for initial location details on the page
-            document.getElementById('initialLocationPrice').innerText = initialLocationPrice;
-            document.getElementById('initialLocationTime').innerText = initialLocationTime;
-            // Displaying values for Lokasi Anda and Lokasi Tujuan on the page
-            document.getElementById('userLocation').innerText = initialLocation;
-            document.getElementById('lastLocation').innerText = endlocation;
-            document.getElementById('goalLocation').innerText = goal;
-        </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+
+        // ShortestRoute
+        var shortestPath = {{shortestRoute | tojson | safe}};
+        var shortestPathArray = shortestPath.split(", ");
+
+        var currentColor ='';
+        var price = 0;
+        shortestPathArray.forEach(function (element) {
+        var listItem = document.createElement('li');
+
+        if (element === 'R1') {
+            currentColor = '#25a5be';
+            price += 5000; 
+            element = '1';
+        } else if (element === 'R2') {
+            currentColor = '#be4d25';
+            price += 5000;
+            element = '2L';
+        } else if (element === 'R3') {
+            currentColor = '#49be25 ';
+            price += 5000;
+            element = '3';
+        } 
+        listItem.style.backgroundColor = currentColor;
+        listItem.innerText = element;
+        document.getElementById('shortestRoute').appendChild(listItem);
+        });
+        // Sample data for initial location details
+        var initialLocationPrice = "Rp. " + price + ",- / Rp. " + price/2+",-(for students)"  ;
+        var initialLocationTime = shortestPathArray.length * 3  + " minutes";
+
+        var initialLocation =  {{startRoute | tojson}};
+	    var endlocation = {{endRoute | tojson}};
+        var goal = {{endRoute |tojson}};
+        // Displaying values for initial location details on the page
+        document.getElementById('initialLocationPrice').innerText = initialLocationPrice;
+        document.getElementById('initialLocationTime').innerText = initialLocationTime;
+        // Displaying values for Lokasi Anda and Lokasi Tujuan on the page
+        document.getElementById('userLocation').innerText = initialLocation;
+        document.getElementById('lastLocation').innerText = endlocation;
+        document.getElementById('goalLocation').innerText = endlocation;
+    </script>
 </body>
 </html>
