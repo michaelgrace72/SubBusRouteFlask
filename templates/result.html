@@ -73,28 +73,66 @@
         var shortestPath = {{shortestRoute | tojson | safe}};
         var shortestPathArray = shortestPath.split(", ");
 
+        // Inisialisasi arrayRoute
+        var arrayRoute = [];
+        var currentRoute = '';
+
+        // Iterasi untuk membuat arrayRoute
+        shortestPathArray.forEach(function (element) {
+            if (element === 'R1') {
+                currentRoute = '1';
+            }
+            else if (element === 'R2') {
+                currentRoute = '2L';
+            }
+            else if (element === 'R3') {
+                currentRoute = '3'
+            }
+            arrayRoute.push(currentRoute);
+        });
+
+        console.log(arrayRoute);
+
+        for (var i = 0; i < shortestPathArray.length; i++) {
+            if (shortestPathArray[i] === 'R1' || shortestPathArray[i] === 'R2' || shortestPathArray[i] === 'R3') {
+                shortestPathArray.splice(i, 1);
+                arrayRoute.splice(i, 1);
+                i--; // Kurangi indeks agar tidak terlewat
+            }
+        }
+        console.log('Modified shortestPathArray:', shortestPathArray);
+        console.log('Modified arrayRoute:', arrayRoute);
+
+
         var currentColor ='';
         var price = 0;
-        shortestPathArray.forEach(function (element) {
-        var listItem = document.createElement('li');
+        
+        shortestPathArray.forEach(function (element, index) {
+            arrayRoute.forEach(function (route, subIndex) {
+                if (index === subIndex) {
+                    var listItem = document.createElement('li');
+                    var currentColor = '';
 
-        if (element === 'R1') {
-            currentColor = '#25a5be';
-            price += 5000; 
-            element = '1';
-        } else if (element === 'R2') {
-            currentColor = '#be4d25';
-            price += 5000;
-            element = '2L';
-        } else if (element === 'R3') {
-            currentColor = '#49be25 ';
-            price += 5000;
-            element = '3';
-        } 
-        listItem.style.backgroundColor = currentColor;
-        listItem.innerText = element;
-        document.getElementById('shortestRoute').appendChild(listItem);
+                    if (route === '1') {
+                        currentColor = '#25a5be';
+                        price += 5000;
+                    } 
+                    else if (route === '2L') {
+                        currentColor = '#be4d25';
+                        price += 5000;
+                    } 
+                    else if (route === '3') {
+                        currentColor = '#49be25';
+                        price += 5000;
+                    }
+
+                    listItem.style.backgroundColor = currentColor;
+                    listItem.innerText = element + '\n' + route;
+                    document.getElementById('shortestRoute').appendChild(listItem);
+                }
+            });
         });
+
         // Sample data for initial location details
         var initialLocationPrice = "Rp. " + price + ",- / Rp. " + price/2+",-(for students)"  ;
         var initialLocationTime = shortestPathArray.length * 3  + " minutes";
