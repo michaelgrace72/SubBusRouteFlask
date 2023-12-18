@@ -122,15 +122,22 @@
                     } else if (route === '3') {
                         currentColor = '#be4d25';
                     }
-
+                    console.log(index)
                     // Create a div for the list item content
                     var contentDiv = document.createElement('div');
                     contentDiv.style.display = 'flex';
                     contentDiv.style.alignItems = 'center';
-
+                    
                     // Create an img element
                     var imgElement = document.createElement('img');
-                    imgElement.src = "{{ url_for('static', filename='img/halte2.webp') }}";
+                    if(shortestPathArray[index] === shortestPathArray[index+1]){
+                        imgElement.src = "{{ url_for('static', filename='img/transit.jpg') }}";
+                    }else if(shortestPathArray[index] === shortestPathArray[index-1]){
+                        imgElement.src = "{{ url_for('static', filename='img/transit.jpg') }}";
+                    }else {
+                        imgElement.src = "{{ url_for('static', filename='img/halte2.webp') }}";
+
+                    }
                     imgElement.alt = 'Icon'; 
 
                     contentDiv.appendChild(imgElement);
