@@ -14,7 +14,8 @@ let locations = ["KENPARK",
 	"Gubernur Suryo","Balai Kota","Moestopo","RSUD dr. Soetomo","UNAIR","Samsat Manyar","Koni","PENS 2","Terminal Purabaya","Dukuh Menanggal",
 	"Siwalankerto 1","Taman Pelangi","RS Bhayangkara","UBHARA","PUSVETMA","Ketintang","Joyoboyo","Museum BI","RS Darmo","Embong Malang",
 	"Blauran","Pirngadi","Pasar Turi","Masjid Kemayoran","Indrapura","Jembatan Merah","Veteran","Tugu Pahlawan","Alun Alun Contong",
-	"Siola","Tunjungan","Joyoboyo 2","RSAL","Wonocolo","UIN","Jemur Ngawinan","Siwalankerto 2","Kerto Menanggal","Tunjungan Plaza"];
+	"Siola","Tunjungan","Joyoboyo 2","RSAL","Wonocolo","UIN","Jemur Ngawinan","Siwalankerto 2","Kerto Menanggal","Tunjungan Plaza",
+	"Surabaya Zoo", "Monument Kapal Selam", "Monkasel"];
 // Sort locations in ascending order
 let sortedLocations = locations.sort();
 
@@ -90,6 +91,41 @@ function getOrCreateAutocompleteList(input) {
 	}
 	return list;
 }
+
+// autocomplete on tab key
+emailInput.addEventListener("keydown", (e) => {
+    handleKeydown(e, emailInput);
+});
+
+// Execute function on keydown for the password input
+passwordInput.addEventListener("keydown", (e) => {
+    handleKeydown(e, passwordInput);
+});
+
+function handleKeydown(event, input) {
+    // Check if the pressed key is the Tab key
+    if (event.key === "Tab") {
+        // Prevent the default action
+        event.preventDefault();
+
+        // Create or get the autocomplete list for the specific input field
+        let list = getOrCreateAutocompleteList(input);
+
+        // Check if there are suggestions in the list
+        if (list.children.length > 0) {
+            // Select the first suggestion and fill in the input field
+            let firstSuggestion = list.querySelector(".list-items");
+            if (firstSuggestion) {
+                let suggestionText = firstSuggestion.textContent.replace(/<\/?b>/g, ''); // Remove <b> tags
+                input.value = suggestionText;
+
+                // Clear the autocomplete list for the specific input field
+                removeElements(list);
+            }
+        }
+    }
+}
+
 
 
 

@@ -99,12 +99,34 @@ body.my-login-page {
   .list-items:hover {
 	background-color: #dddddd;
   }
+
   ul#shortestRouteContent li{
 	border-radius: 5px;
 	padding: 5px 4px;
 	margin-bottom: 10px;
 	color: whitesmoke;
+	display: flex;
+	align-items: center;
   }
+
+  ul#shortestRouteContent li img{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-right: 10px;
+  }
+  ul#shortestRouteContent li div strong{
+	display: block;
+  }
+  ul#shortestRouteContent li div div{
+	flex-grow: 1;
+  }
+
+ 
+
+ 
+
+  
 
 
   /* ul#shortestRoute li{

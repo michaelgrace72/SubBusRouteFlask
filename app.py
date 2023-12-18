@@ -418,6 +418,10 @@ def checkBigLocation(Location):
         Location = 'Embong Malang'
     elif Location == 'Stasiun Gubeng':
         Location = 'SMAN 4'
+    elif Location == 'Surabaya Zoo':
+        Location = 'Museum BI'
+    elif Location == 'Monument Kapal Selam' or Location == 'Monkasel':
+        Location = 'Pemuda'
     
     return Location
     

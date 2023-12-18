@@ -28,7 +28,7 @@
 
                             <div class="mt-3">
                                 <p>
-                                    <img id="goalImage" src="" width="50" height="50" alt="">
+                                    <img id="goalImage" src="" width="50" height="50" alt="" style="border-radius:50%" >
                                     <strong><span style="font-size: 18px;" id="goalLocation"></span></strong></p>
                             </div>
 
@@ -36,9 +36,9 @@
                             <div class="mt-3">
                                 <h4>Info</h4>
                                 <p><strong>Price:</strong></p>
-                                <p><img src="{{ url_for('static', filename='img/cash.jpg') }}" width="35" height="35" alt="Cash Image"><span id="initialLocationPrice"></span></p>
+                                <p><img src="{{ url_for('static', filename='img/cash.jpg') }}" width="35" height="35" alt="Cash Image" style="border-radius:50%"><span id="initialLocationPrice"></span></p>
                                 <p><strong>Time Estimation:</strong></p>
-                                <p><img src="{{ url_for('static', filename='img/clock.jpg') }}" width="35" height="35" alt="Clock Image"><span id="initialLocationTime"></span></p>
+                                <p><img src="{{ url_for('static', filename='img/clock.jpg') }}" width="35" height="35" alt="Clock Image" style="border-radius:50%"><span id="initialLocationTime"></span></p>
                             </div>
 
                             <!-- Section for Lokasi Anda and Lokasi Tujuan -->
@@ -50,7 +50,7 @@
                             <h4>Shortest Route:</h4>
                             <div id="shortestRouteContainer" style="max-height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
                                 <ul id="shortestRouteContent"></ul>
-                              </div>
+                            </div>
 
                         </div>
                     </div>
@@ -111,36 +111,65 @@
         // Instead of appending to the main page, append the Shortest Route to the container
         shortestPathArray.forEach(function (element, index) {
             arrayRoute.forEach(function (route, subIndex) {
-            if (index === subIndex) {
-                var listItem = document.createElement('li');
-                var strongElement = document.createElement('strong');
-                var currentColor = '';
+                if (index === subIndex) {
+                    var listItem = document.createElement('li');
+                    var currentColor = '';
 
-                if (route === '1') {
-                currentColor = '#25a5be';
-                } else if (route === '2L') {
-                currentColor = '#be4d25';
-                } else if (route === '3') {
-                currentColor = '#49be25';
+                    if (route === '1') {
+                        currentColor = '#25a5be';
+                    } else if (route === '2L') {
+                        currentColor = '#49be25';
+                    } else if (route === '3') {
+                        currentColor = '#be4d25';
+                    }
+
+                    // Create a div for the list item content
+                    var contentDiv = document.createElement('div');
+                    contentDiv.style.display = 'flex';
+                    contentDiv.style.alignItems = 'center';
+
+                    // Create an img element
+                    var imgElement = document.createElement('img');
+                    imgElement.src = "{{ url_for('static', filename='img/halte2.webp') }}"; // Set the path to your image
+                    imgElement.alt = 'Icon'; // Set the alt text for accessibility
+
+                    // Append the imgElement to the contentDiv
+                    contentDiv.appendChild(imgElement);
+
+                    // Create a div for the text content
+                    var textDiv = document.createElement('div');
+                    textDiv.style.flexGrow = 1;
+
+                    // Create a strong element
+                    var strongElement = document.createElement('strong');
+                    strongElement.innerText = element; // Set only the element inside strongElement
+
+                    // Append the strongElement to the textDiv
+                    textDiv.appendChild(strongElement);
+
+                    // Create a div for additional content
+                    var additionalContentDiv = document.createElement('div');
+                    additionalContentDiv.innerHTML = 'SuroboyoBus ' + route;
+
+                    // Append the additionalContentDiv to the textDiv
+                    textDiv.appendChild(additionalContentDiv);
+
+                    // Append the textDiv to the contentDiv
+                    contentDiv.appendChild(textDiv);
+
+                    // Append the contentDiv to the listItem
+                    listItem.appendChild(contentDiv);
+
+                    listItem.style.backgroundColor = currentColor;
+
+                    // Append the listItem to the container
+                    document.getElementById('shortestRouteContent').appendChild(listItem);
                 }
-
-                strongElement.innerText = element; // Set only the element inside strongElement
-                listItem.style.backgroundColor = currentColor;
-
-                // Append the strongElement to the listItem
-                listItem.appendChild(strongElement);
-
-                // Append a line break using the <br> tag
-                listItem.appendChild(document.createElement('br'));
-
-                // Append additional content to the listItem
-                listItem.innerHTML += 'SuroboyoBus ' + route;
-
-                // Append the listItem to the container
-                document.getElementById('shortestRouteContent').appendChild(listItem);
-            }
             });
         });
+
+
+        
         
 
         // Sample data for initial location details
@@ -149,7 +178,7 @@
 
         var initialLocation =  {{startRoute | tojson}};
 	    var endlocation = shortestPathArray.slice(-1);
-        var goal = {{endRoute |tojson}};
+        var goal = {{endRoute | tojson}};
 
         // Get the image element by its id
         var goalImage = document.getElementById('goalImage');
@@ -165,6 +194,16 @@
             case 'Stasiun Gubeng':
                 goalIMage.src = '{{ url_for("static", filename="img/stgubeng.jpg") }}';
                 break;
+            case 'Surabaya Zoo':
+                goalImage.src = '{{ url_for("static", filename="img/suroboyozoo.jpeg") }}';
+                break;
+            case 'Monument Kapal Selam':
+            case 'Monkasel':
+                goalImage.src = '{{ url_for("static", filename="img/Monkasel.jpg") }}';
+                break;
+            default:
+            // Set a default image source if none of the cases match
+            goalImage.src = '{{ url_for("static", filename="img/halte.png") }}';
         }
 
 
