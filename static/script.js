@@ -16,19 +16,16 @@ let locations = ["KENPARK",
 	"Blauran","Pirngadi","Pasar Turi","Masjid Kemayoran","Indrapura","Jembatan Merah","Veteran","Tugu Pahlawan","Alun Alun Contong",
 	"Siola","Tunjungan","Joyoboyo 2","RSAL","Wonocolo","UIN","Jemur Ngawinan","Siwalankerto 2","Kerto Menanggal","Tunjungan Plaza",
 	"Surabaya Zoo", "Monument Kapal Selam", "Monkasel"];
-// Sort locations in ascending order
+
 let sortedLocations = locations.sort();
 
-// Reference the input fields with ids "email" and "password"
 let emailInput = document.getElementById("email");
 let passwordInput = document.getElementById("password");
 
-// Execute function on keyup for the email input
 emailInput.addEventListener("input", () => {
 	handleAutocomplete(emailInput);
 });
 
-// Execute function on keyup for the password input
 passwordInput.addEventListener("input", () => {
 	handleAutocomplete(passwordInput);
 });

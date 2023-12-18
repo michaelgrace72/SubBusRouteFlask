@@ -1,168 +1,123 @@
 * {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-  }
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-html,body {
-	height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 body.my-login-page {
-	background-color: #f7f9fb;
-	font-size: 14px;
+  background-color: #f7f9fb;
+  font-size: 14px;
 }
 
 .my-login-page .brand {
-	width: 90px;
-	height: 90px;
-	overflow: hidden;
-	border-radius: 50%;	
-	margin: 40px auto;
-	box-shadow: 0 4px 8px rgba(0,0,0,.05);
-	position: relative;
-	z-index: 1;
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
 }
 
 .my-login-page .brand img {
-	width: 100%;
+  width: 100%;
 }
 
 .my-login-page .card-wrapper {
-	width: 400px;
+  width: 400px;
 }
 
 .my-login-page .card {
-	border-color: transparent;
-	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+  border-color: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .my-login-page .card.fat {
-	padding: 10px;
+  padding: 10px;
 }
 
 .my-login-page .card .card-title {
-	margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .my-login-page .form-control {
-	border-width: 2.3px;
+  border-width: 2.3px;
 }
 
 .my-login-page .form-group label {
-	width: 100%;
+  width: 100%;
 }
 
 .my-login-page .btn.btn-block {
-	padding: 12px 10px;
+  padding: 12px 10px;
 }
 
 .my-login-page .footer {
-	margin: 40px 0;
-	color: #888;
-	text-align: center;
+  margin: 40px 0;
+  color: #888;
+  text-align: center;
 }
 
-
 @media screen and (max-width: 425px) {
-	.my-login-page .card-wrapper {
-		width: 90%;
-		margin: 0 auto;
-	}
+  .my-login-page .card-wrapper {
+    width: 90%;
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 320px) {
-	.my-login-page .card.fat {
-		padding: 0;
-	}
+  .my-login-page .card.fat {
+    padding: 0;
+  }
 
-	.my-login-page .card.fat .card-body {
-		padding: 15px;
-	}
+  .my-login-page .card.fat .card-body {
+    padding: 15px;
+  }
 }
-  
-  ul {
-	list-style: none;
-  }
-  
-  .list {
-	width: 85%;
-	background-color: #ffffff;
-	border-radius: 0 0 5px 5px;
-	position: absolute;
-  }
-  
-  .list-items {
-	padding: 10px 15px;
-  }
-  
-  .list-items:hover {
-	background-color: #dddddd;
-  }
 
-  ul#shortestRouteContent li{
-	border-radius: 5px;
-	padding: 5px 4px;
-	margin-bottom: 10px;
-	color: whitesmoke;
-	display: flex;
-	align-items: center;
-  }
+ul {
+  list-style: none;
+}
 
-  ul#shortestRouteContent li img{
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	margin-right: 10px;
-  }
-  ul#shortestRouteContent li div strong{
-	display: block;
-  }
-  ul#shortestRouteContent li div div{
-	flex-grow: 1;
-  }
+.list {
+  width: 85%;
+  background-color: #ffffff;
+  border-radius: 0 0 5px 5px;
+  position: absolute;
+}
 
- 
+.list-items {
+  padding: 10px 15px;
+}
 
- 
+.list-items:hover {
+  background-color: #dddddd;
+}
 
-  
+ul#shortestRouteContent li {
+  border-radius: 5px;
+  padding: 5px 4px;
+  margin-bottom: 10px;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+}
 
-
-  /* ul#shortestRoute li{
-	background-color: #49be25;
-	border: 1px solid #49be25;
-
-  } */
-  /* ul#shortestRoute li:nth-child(2){
-	background-color: rgb(186, 58, 58);
-	border: 1px solid rgb(186, 58, 58);
-  }
-
-  ul#shortestRoute li:nth-child(3){
-	background-color: rgb(101, 58, 186);
-	border: 1px solid rgb(118, 58, 186);
-  }
-
-  ul#shortestRoute li:nth-child(4){
-	background-color: rgb(58, 171, 186);
-	border: 1px solid rgb(118, 58, 186);
-  }
-  ul#shortestRoute li:nth-child(5){
-	background-color: rgb(130, 186, 58);
-	border: 1px solid rgb(118, 58, 186);
-  }
-  ul#shortestRoute li:nth-child(6){
-	background-color: rgb(186, 162, 58);
-	border: 1px solid rgb(118, 58, 186);
-  }
-  ul#shortestRoute li:nth-child(7){
-	background-color: rgb(101, 58, 186);
-	border: 1px solid rgb(118, 58, 186);
-  }
-  ul#shortestRoute li:nth-child(8){
-	background-color: rgb(101, 58, 186);
-	border: 1px solid rgb(118, 58, 186);
-  } */
-  
-
+ul#shortestRouteContent li img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+ul#shortestRouteContent li div strong {
+  display: block;
+}
+ul#shortestRouteContent li div div {
+  flex-grow: 1;
+}
