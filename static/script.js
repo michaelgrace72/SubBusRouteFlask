@@ -1,6 +1,7 @@
 
 //Suggestion Box Function
 
+//list of locations
 let locations = ["KENPARK",
 	"Superindo", "RSIA 2", "Kalijudan 2", "Mulyorejo 2", "UNAIR 2", "Galaxy 2", "Kertajaya Indah", "ITS", "Bundaran ITS", "Manyar Kerta Adi",
 	"RS Haji 2", "Kopertis", "Universitas Kristen", "Semolowaru 2", "Semampir", "STIKOM", "Pandugo 2", "Penjaringan Asri", "Rungkut Madya 2",
@@ -17,19 +18,22 @@ let locations = ["KENPARK",
 	"Siola","Tunjungan","Joyoboyo 2","RSAL","Wonocolo","UIN","Jemur Ngawinan","Siwalankerto 2","Kerto Menanggal","Tunjungan Plaza",
 	"Surabaya Zoo", "Monument Kapal Selam", "Monkasel"];
 
+//sort the locations and get the input fields
 let sortedLocations = locations.sort();
-
 let emailInput = document.getElementById("email");
 let passwordInput = document.getElementById("password");
 
+// Execute function on input for the email input
 emailInput.addEventListener("input", () => {
 	handleAutocomplete(emailInput);
 });
 
+// Execute function on input for the password input
 passwordInput.addEventListener("input", () => {
 	handleAutocomplete(passwordInput);
 });
 
+//	autocomplete function
 function handleAutocomplete(input) {
 	// Create or get the autocomplete list for the specific input field
 	let list = getOrCreateAutocompleteList(input);

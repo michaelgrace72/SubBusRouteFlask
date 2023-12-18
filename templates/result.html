@@ -48,7 +48,7 @@
                                 <p><strong>Halte Akhir:</strong> <span id="lastLocation"></span></p>
                             </div>
                             <h4>Shortest Route:</h4>
-                            <div id="shortestRouteContainer" style="max-height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+                            <div id="shortestRouteContainer" style="max-height: 400px; overflow-y: auto; border: 0px solid #ccc; padding: 10px; margin-top: 10px;">
                                 <ul id="shortestRouteContent"></ul>
                             </div>
 
@@ -108,7 +108,7 @@
 
         var currentColor ='';
         
-        // Instead of appending to the main page, append the Shortest Route to the container
+        // append items to the list
         shortestPathArray.forEach(function (element, index) {
             arrayRoute.forEach(function (route, subIndex) {
                 if (index === subIndex) {
@@ -130,10 +130,9 @@
 
                     // Create an img element
                     var imgElement = document.createElement('img');
-                    imgElement.src = "{{ url_for('static', filename='img/halte2.webp') }}"; // Set the path to your image
-                    imgElement.alt = 'Icon'; // Set the alt text for accessibility
+                    imgElement.src = "{{ url_for('static', filename='img/halte2.webp') }}";
+                    imgElement.alt = 'Icon'; 
 
-                    // Append the imgElement to the contentDiv
                     contentDiv.appendChild(imgElement);
 
                     // Create a div for the text content
@@ -142,7 +141,7 @@
 
                     // Create a strong element
                     var strongElement = document.createElement('strong');
-                    strongElement.innerText = element; // Set only the element inside strongElement
+                    strongElement.innerText = element; 
 
                     // Append the strongElement to the textDiv
                     textDiv.appendChild(strongElement);
@@ -201,15 +200,24 @@
             case 'Monkasel':
                 goalImage.src = '{{ url_for("static", filename="img/Monkasel.jpg") }}';
                 break;
+            case 'ITS':
+                goalImage.src = '{{ url_for("static", filename="img/its.jpeg") }}';
+                break;
+            case 'KENPARK':
+                goalImage.src = '{{ url_for("static", filename="img/kenpark.jpg") }}';
+                break;
+            case 'UNESA':
+                goalImage.src = '{{ url_for("static", filename="img/unesa.png") }}';
+                break;
             default:
-            // Set a default image source if none of the cases match
+            // Set a default image source if its not big location
             goalImage.src = '{{ url_for("static", filename="img/halte.png") }}';
         }
 
 
-        // Set the goalLocation value (replace 'your_goal_location' with the actual value)
+        // Get the goalLocation value
         document.getElementById('goalLocation').innerText = goalLocation;
-        // Displaying values for initial location details on the page
+        // Displaying values for price and time estimation on the page
         document.getElementById('initialLocationPrice').innerText = initialLocationPrice;
         document.getElementById('initialLocationTime').innerText = initialLocationTime;
         // Displaying values for Lokasi Anda and Lokasi Tujuan on the page
